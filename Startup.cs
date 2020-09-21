@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCShop.Data;
+using MVCShop.Data.Repository;
 
 namespace MVCShop
 {
@@ -25,6 +26,8 @@ namespace MVCShop
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(_config["DefaultConnection"]));
+
+            services.AddTransient<IRepository, Repository>();
 
             services.AddControllersWithViews();
         }
