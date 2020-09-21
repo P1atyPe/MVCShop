@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCShop.Data;
 using MVCShop.Models;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,13 @@ namespace MVCShop.Controllers
 {
     public class HomeController : Controller
     {
-        
+        private AppDbContext _ctx;
+
+        public HomeController(AppDbContext ctx)
+        {
+            _ctx = ctx;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -28,8 +35,12 @@ namespace MVCShop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Post post)
+        public async Task<IActionResult> Edit(Post post)
         {
+            _ctx.Posts.Add(post);
+
+            await _ctx.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
     }
