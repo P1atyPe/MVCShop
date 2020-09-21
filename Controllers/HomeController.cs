@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MVCShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,16 @@ namespace MVCShop.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            return View(new Post());
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Post post)
+        {
+            return RedirectToAction("Index");
+        }
     }
 }
