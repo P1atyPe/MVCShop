@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MVCShop.Data;
+using MVCShop.Data.FileManager;
 using MVCShop.Data.Repository;
 
 namespace MVCShop
@@ -44,6 +45,7 @@ namespace MVCShop
             });
 
             services.AddTransient<IRepository, Repository>();
+            services.AddTransient<IFileManager, FileManager>();
 
             services.AddControllersWithViews();
         }
@@ -56,6 +58,8 @@ namespace MVCShop
             }
 
             app.UseRouting();
+
+            app.UseStaticFiles();
 
             app.UseAuthentication();
             app.UseAuthorization();
