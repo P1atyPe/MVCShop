@@ -12,5 +12,6 @@ namespace MVCShop.Data.FileManager
     {
         FileStream ImageStream(string image);
         Task<string> SaveImage(IFormFile image);
+        bool RemoveImage(string image);
     }
 }
