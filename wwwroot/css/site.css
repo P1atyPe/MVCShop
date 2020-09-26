@@ -7,9 +7,10 @@ a {
     color: white;
     text-decoration: none;
 }
-a:hover {
-    text-decoration: underline;
-}
+
+    a:hover {
+        text-decoration: underline;
+    }
 
 nav {
     background-color: #142127;
@@ -18,14 +19,14 @@ nav {
     text-align: center;
 }
 
-nav a {
-    display: inline-block;
-    height: 100%;
-    padding: 15px;
-}
+    nav a {
+        display: inline-block;
+        height: 100%;
+        padding: 15px;
+    }
 
 .main-img {
-    position: relative; 
+    position: relative;
     height: 500px;
     background-image: url('../content/static/pexels-min-an-1448709.jpg');
     background-position: center;
@@ -49,9 +50,9 @@ nav a {
 }
 
 .post {
-    margin: 5px; 
+    margin: 5px;
     position: relative;
-    display: flex; 
+    display: flex;
     height: 400px;
     box-shadow: 0 0 5px 0 black;
 }
@@ -63,11 +64,12 @@ nav a {
 
     .post-body {
         margin: -5px 5px 0;
+        padding: 20px 5px;
         background-color: white;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
     }
 
 .no-shadow {
     box-shadow: none;
 }
-
-
