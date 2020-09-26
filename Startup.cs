@@ -47,7 +47,10 @@ namespace MVCShop
             services.AddTransient<IRepository, Repository>();
             services.AddTransient<IFileManager, FileManager>();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(options =>
+            {
+                options.CacheProfiles.Add("Monthly", new Microsoft.AspNetCore.Mvc.CacheProfile { Duration = 60 * 60 * 24 * 7 * 4});
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
