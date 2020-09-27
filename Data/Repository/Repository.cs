@@ -45,6 +45,7 @@ namespace MVCShop.Data.Repository
             return new IndexViewModel
             {
                 PageNumber = pageNumber,
+                PageCount = (int) Math.Ceiling(postsCount * 1.0 / pageSize),
                 NextPage = postsCount > capacity,
                 Category = category,
                 Posts = query
