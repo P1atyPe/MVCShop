@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MVCShop.Models;
+using MVCShop.Models.Comments;
 
 namespace MVCShop.Data
 {
@@ -13,5 +14,9 @@ namespace MVCShop.Data
         }
 
         public DbSet<Post> Posts { get; set; }
+        public DbSet<MainComment> MainComments { get; set; }
+        public DbSet<SubComment> SubComments { get; set; }
+
+
     }
 }

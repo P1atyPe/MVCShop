@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MVCShop.Models.Comments;
+using System;
+using System.Collections.Generic;
 
 namespace MVCShop.Models
 {
@@ -15,5 +17,8 @@ namespace MVCShop.Models
         public string Category { get; set; } = "";
 
         public DateTime Created { get; set; } = DateTime.Now;
+
+        public List<MainComment> MainComments { get; set; }
+
     }
 }

@@ -1,4 +1,6 @@
-﻿using MVCShop.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MVCShop.Models;
+using MVCShop.Models.Comments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +39,10 @@ namespace MVCShop.Data.Repository
 
         public Post GetPost(int id)
         {
-            return _ctx.Posts.FirstOrDefault(p => p.Id == id);
+            return _ctx.Posts
+                .Include(p => p.MainComments)
+                .ThenInclude(mc => mc.SubComments)
+                .FirstOrDefault(p => p.Id == id);
         }
 
         public void RemovePost(int id)
@@ -58,6 +63,11 @@ namespace MVCShop.Data.Repository
                 return true;
             }
             return false;
+        }
+
+        public void AddSubComment(SubComment comment)
+        {
+            _ctx.SubComments.Add(comment);
         }
     }
 }
