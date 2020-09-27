@@ -1,5 +1,6 @@
 ﻿using MVCShop.Models;
 using MVCShop.Models.Comments;
+using MVCShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace MVCShop.Data.Repository
     {
         Post GetPost(int id);
         List<Post> GetAllPosts();
-        List<Post> GetAllPosts(string Category);
+        IndexViewModel GetAllPosts(int pageNumber, string category);
         void AddPost(Post post);
         void UpdatePost(Post post);
         void RemovePost(int id);

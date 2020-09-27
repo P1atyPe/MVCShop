@@ -26,11 +26,14 @@ namespace MVCShop.Controllers
             _fileManager = fileManager;
         }
 
-        public IActionResult Index(string category)
+        public IActionResult Index(int pageNumber, string category)
         {
-            var posts = string.IsNullOrEmpty(category) ? _repo.GetAllPosts() : _repo.GetAllPosts(category);
+            if (pageNumber < 1)
+                return RedirectToAction("Index", new { pageNumber = 1, category});
 
-            return View(posts);
+            var vm = _repo.GetAllPosts(pageNumber, category);
+
+            return View(vm);
         }
 
         public IActionResult Post(int id)

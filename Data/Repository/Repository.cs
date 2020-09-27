@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MVCShop.Models;
 using MVCShop.Models.Comments;
+using MVCShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +29,29 @@ namespace MVCShop.Data.Repository
             return _ctx.Posts.ToList();
         }
 
-        public List<Post> GetAllPosts(string category)
+        public IndexViewModel GetAllPosts(int pageNumber, string category)
         {
             //Func<Post, bool> InCategory = (post) => { return post.Category.ToLower().Equals(category.ToLower()); };
+            int pageSize = 5;
+            int skipAmount = pageSize * (pageNumber - 1);
+            int capacity = skipAmount + pageSize;
 
-            return _ctx.Posts
-                .Where(post => post.Category.ToLower().Equals(category.ToLower()))
-                .ToList();
+            var query = _ctx.Posts.AsQueryable();
+
+            if (!String.IsNullOrEmpty(category))
+                query = query.Where(x => x.Category.ToLower().Equals(category.ToLower()));
+            int postsCount = query.Count();
+
+            return new IndexViewModel
+            {
+                PageNumber = pageNumber,
+                NextPage = postsCount > capacity,
+                Category = category,
+                Posts = query
+                    .Skip(skipAmount)
+                    .Take(pageSize)
+                    .ToList()
+            };
         }
 
         public Post GetPost(int id)
