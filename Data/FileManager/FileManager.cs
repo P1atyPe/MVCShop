@@ -40,7 +40,7 @@ namespace MVCShop.Data.FileManager
             }
         }
 
-        public async Task<string> SaveImage(IFormFile image)
+        public string SaveImage(IFormFile image)
         {
             try
             {

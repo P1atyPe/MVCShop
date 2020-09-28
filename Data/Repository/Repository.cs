@@ -59,42 +59,35 @@ namespace MVCShop.Data.Repository
 
         private IEnumerable<int> PageNumbers(int pageNumber, int pageCount)
         {
-            List<int> pages = new List<int>();
+            int midPoint = pageNumber < 3 ? 3
+                : pageNumber > pageCount - 2 ? pageCount - 2
+                : pageNumber;
 
-            int midPoint = pageNumber;
-            if (midPoint < 3)
+            int lowerBound = midPoint - 2;
+            int upperBound = midPoint + 2;
+
+            if (lowerBound != 1)
             {
-                midPoint = 3;
-            }
-            else if (midPoint > pageCount - 2)
-            {
-                midPoint = pageCount - 2;
+                yield return 1;
+                if (lowerBound - 1 > 1)
+                {
+                    yield return -1;
+                }
             }
 
             for (int i = midPoint - 2; i <= midPoint + 2; i++)
             {
-                pages.Add(i);
+                yield return i;
             }
 
-            if (pages[0] != 1)
+            if (upperBound != pageCount)
             {
-                pages.Insert(0, 1);
-                if (pages[1] - pages[0] > 1)
+                if (pageCount - upperBound > 1)
                 {
-                    pages.Insert(1, -1);
+                    yield return -1;
                 }
+                yield return pageCount;
             }
-
-            if (pages[pages.Count - 1] != pageCount)
-            {
-                pages.Insert(pages.Count, pageCount);
-                if (pages[pages.Count - 1] - pages[pages.Count - 2] > 1)
-                {
-                    pages.Insert(pages.Count - 1, -1);
-                }
-            }
-
-            return pages;
         }
 
         public Post GetPost(int id)
