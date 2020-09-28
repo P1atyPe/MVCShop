@@ -31,6 +31,42 @@ nav {
     background-image: url('../content/static/pexels-min-an-1448709.jpg');
     background-position: center;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+}
+
+.search {
+    color: #000;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: pink;
+    font-size: 18px;
+    border-bottom: 2px solid pink;
+}
+
+
+    .search::placeholder {
+        color: pink;
+    }
+
+.submit-btn {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .submit-btn {
+        display: inline-block;
+    }
+}
+
+.main-img .title {
+    color: white;
+    font-size: 35px;
+    text-shadow: 0 0 8px black;
+    margin-bottom: 1rem;
 }
 
 .title {

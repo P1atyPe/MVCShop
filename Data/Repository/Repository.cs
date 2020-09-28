@@ -30,17 +30,29 @@ namespace MVCShop.Data.Repository
             return _ctx.Posts.ToList();
         }
 
-        public IndexViewModel GetAllPosts(int pageNumber, string category)
+        public IndexViewModel GetAllPosts(
+            int pageNumber, 
+            string category,
+            string search)
         {
             //Func<Post, bool> InCategory = (post) => { return post.Category.ToLower().Equals(category.ToLower()); };
             int pageSize = 2;
             int skipAmount = pageSize * (pageNumber - 1);
             int capacity = skipAmount + pageSize;
 
-            var query = _ctx.Posts.AsQueryable();
+            var query = _ctx.Posts.AsNoTracking().AsQueryable();
 
             if (!String.IsNullOrEmpty(category))
                 query = query.Where(x => x.Category.ToLower().Equals(category.ToLower()));
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(x => EF.Functions.Like(x.Title, $"%{search}%") 
+                || EF.Functions.Like(x.Body, $"%{search}%") 
+                || EF.Functions.Like(x.Description, $"%{search}%"));
+            }
+
+
             int postsCount = query.Count();
             int pageCount = (int)Math.Ceiling(postsCount * 1.0 / pageSize);
 
@@ -51,6 +63,7 @@ namespace MVCShop.Data.Repository
                 NextPage = postsCount > capacity,
                 Pages = PageHelper.PageNumbers(pageNumber, pageCount).ToList(),
                 Category = category,
+                Search = search,
                 Posts = query
                     .Skip(skipAmount)
                     .Take(pageSize)
