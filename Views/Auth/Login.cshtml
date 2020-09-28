@@ -1,7 +1,7 @@
 ﻿@model LoginViewModel
 
 
-<form asp-controller="Auth" asp-action="Login" method="post">
+<form class="sign-in-form" asp-controller="Auth" asp-action="Login" method="post">
     <div>
         <label>Username</label>
         <input asp-for="UserName" />
@@ -10,7 +10,10 @@
         <label>Password</label>
         <input asp-for="Password" />
     </div>
-    <input type="submit" value="Sign In"/>
+    <div>
+        <input type="submit" value="Sign In" />
+        <a asp-controller="Auth" asp-action="Register">Register</a>
+    </div>
 </form>
 
 
