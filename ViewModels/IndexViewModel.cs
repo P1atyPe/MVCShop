@@ -14,5 +14,6 @@ namespace MVCShop.ViewModels
         public bool NextPage { get; set; }
         public string Category { get; set; }
         public IEnumerable<Post> Posts { get; set; }
+        public IEnumerable<int> Pages { get; internal set; }
     }
 }

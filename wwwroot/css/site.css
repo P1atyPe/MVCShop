@@ -62,13 +62,13 @@ nav {
         object-fit: cover;
     }
 
-    .post-body {
-        margin: -5px 5px 0;
-        padding: 20px 5px;
-        background-color: white;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-    }
+.post-body {
+    margin: -5px 5px 0;
+    padding: 20px 5px;
+    background-color: white;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
 
 .no-shadow {
     box-shadow: none;
@@ -84,16 +84,21 @@ nav {
     .pages a {
         background-color: #aaa;
         color: white;
-        padding: 1rem;
+        padding: 0.5rem 0.75rem;
         border: 1px solid #eee;
         margin: 0 0.25rem;
     }
 
         .pages a.active {
             background-color: #ccc;
-        }    
+        }
 
         .pages a:hover {
-            background-color: #999; 
+            background-color: #999;
             text-decoration: none;
         }
+
+.three-dots {
+    line-height: 1;
+    font-size: 24px;
+}
