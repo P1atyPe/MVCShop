@@ -68,7 +68,7 @@ namespace MVCShop.Controllers
                 UserName = vm.Email,
                 Email = vm.Email
             };
-            var result = await _userManager.CreateAsync(user, "password");
+            var result = await _userManager.CreateAsync(user, vm.Password);
 
             if (result.Succeeded)
             {
