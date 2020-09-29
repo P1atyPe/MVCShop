@@ -3,6 +3,10 @@
     background-color: #DDD1F0;
 }
 
+.orange-color {
+    color: orange;
+}
+
 a {
     color: white;
     text-decoration: none;
@@ -153,5 +157,35 @@ nav {
     margin-bottom: 1rem;
 }
 
+.sign-in-message {
+    margin: 15px 0;
+}
+
+
+.comment-section {
+    margin: 20px 5px;
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+    .comment textarea {
+        width: 300px;
+        height: 40px;
+        margin-right: 20px;
+        resize: none;
+    }
+
+.comment-created {
+    font-size: 12px;
+}
+
+.sub-comment {
+    margin-left: 60px;
+    margin-bottom: 40px;
+}
 
 

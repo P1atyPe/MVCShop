@@ -26,14 +26,23 @@
                 await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = 0 });
             }
 
-            @foreach (var c in Model.MainComments)
+            <br />
+
+            @{ 
+                var reversedList = Model.MainComments;
+                reversedList.Reverse();
+            }
+
+            @foreach (var c in reversedList)
             {
                 <p>
-                    @c.Message --- @c.Created
+                    @c.Message
+                </p>
+                <p class="comment-created">
+                    @c.Created
                 </p>
 
-                <div style="margin-left: 20px;">
-                    <h4>Sub Comments</h4>
+                <div class="sub-comment">
                     @{
                         await Html.RenderPartialAsync("_MainComment", new CommentViewModel { PostId = Model.Id, MainCommentId = c.Id });
                     }
@@ -41,7 +50,10 @@
                     @foreach (var sc in c.SubComments)
                     {
                         <p>
-                            @sc.Message --- @sc.Created
+                            @sc.Message
+                        </p>
+                        <p class="comment-created">
+                            @sc.Created
                         </p>
                     }
                 </div>
@@ -50,10 +62,12 @@
     }
     else
     {
-        <div>
-            <a asp-controller="Auth" asp-action="Login">Sign In</a> to comment on this awesome post!
+        <div class="sign-in-message">
+            <a class="orange-color" asp-controller="Auth" asp-action="Login">Sign In</a> to comment on this awesome post!
         </div>
     }
+
+    <br />
 
 </div>
 
